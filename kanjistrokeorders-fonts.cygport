@@ -1,7 +1,7 @@
 inherit font
 
-NAME="font-kanjistrokeorders-ttf"
-VERSION=2.016
+NAME="kanjistrokeorders-fonts"
+VERSION=3.001
 RELEASE=1
 CATEGORY="X11"
 SUMMARY="Contains stroke order diagrams for Kanji and Kana"
@@ -9,14 +9,22 @@ DESCRIPTION="This font provides an easy way to view stroke order diagrams for
 over 6350 kanji, 183 kana symbols, the Latin characters and quite a few other
 symbols."
 HOMEPAGE="https://sites.google.com/site/nihilistorguk/"
-SRC_URI="https://sites.google.com/site/nihilistorguk/Home/KanjiStrokeOrders_v${PV}.zip?attredirects=0"
+SRC_URI="
+	https://dl.dropboxusercontent.com/u/39004158/KanjiStrokeOrders_v${VERSION}.zip
+	http://pkgs.fedoraproject.org/cgit/kanjistrokeorders-fonts.git/plain/kanjistrokeorders-fonts-fontconfig.conf
+"
 SRC_DIR=.
+
+OBSOLETES="font-kanjistrokeorders-ttf"
+
+ARCH=noarch
 
 src_compile() { :; }
 
 src_install() {
 	cd ${S}
-	fontinto TTF
+	fontinto kanjistrokeorders
 	dofont *.ttf
+	newfontconf kanjistrokeorders-fonts-fontconfig.conf 69-kanjistrokeorders.conf
 	dodoc *.pdf *.txt
 }

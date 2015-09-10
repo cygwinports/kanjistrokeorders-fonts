@@ -1,0 +1,22 @@
+inherit font
+
+NAME="font-kanjistrokeorders-ttf"
+VERSION=2.016
+RELEASE=1
+CATEGORY="X11"
+SUMMARY="Contains stroke order diagrams for Kanji and Kana"
+DESCRIPTION="This font provides an easy way to view stroke order diagrams for
+over 6350 kanji, 183 kana symbols, the Latin characters and quite a few other
+symbols."
+HOMEPAGE="https://sites.google.com/site/nihilistorguk/"
+SRC_URI="https://sites.google.com/site/nihilistorguk/Home/KanjiStrokeOrders_v${PV}.zip?attredirects=0"
+SRC_DIR=.
+
+src_compile() { :; }
+
+src_install() {
+	cd ${S}
+	fontinto TTF
+	dofont *.ttf
+	dodoc *.pdf *.txt
+}
